@@ -900,6 +900,7 @@ class Repository(github.GithubObject.CompletableGithubObject):
             post_parameters["milestone"] = milestone._identity
         if labels is not github.GithubObject.NotSet:
             post_parameters["labels"] = [element.name if isinstance(element, github.Label.Label) else element for element in labels]
+        print "post_parameters ",post_parameters
         headers, data = self._requester.requestJsonAndCheck(
             "POST",
             self.url + "/issues",
