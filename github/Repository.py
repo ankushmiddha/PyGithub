@@ -879,7 +879,7 @@ class Repository(github.GithubObject.CompletableGithubObject):
         assert isinstance(title, (str, unicode)), title
         assert body is github.GithubObject.NotSet or isinstance(body, (str, unicode)), body
         assert assignee is github.GithubObject.NotSet or isinstance(assignee, github.NamedUser.NamedUser) or isinstance(assignee, (str, unicode)), assignee
-        assert assignees is github.GithubObject.NotSet or all(isinstance(assignees, github.NamedUser.NamedUser) or isinstance(assignee, (str, unicode)) for assignee in assignees), assignees
+        assert assignees is github.GithubObject.NotSet or isinstance(assignees, github.NamedUser.NamedUser) or isinstance(assignee, (str, unicode)) for assignee in assignees
         assert milestone is github.GithubObject.NotSet or isinstance(milestone, github.Milestone.Milestone), milestone
         assert labels is github.GithubObject.NotSet or all(isinstance(element, github.Label.Label) or isinstance(element, (str, unicode)) for element in labels), labels
 
