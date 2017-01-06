@@ -894,8 +894,16 @@ class Repository(github.GithubObject.CompletableGithubObject):
             else:
                 post_parameters["assignee"] = assignee._identity
         if assignees is not github.GithubObject.NotSet:
+            post_parameters["assignees"] = [assignee.name if isinstance(assignee, github.NamedUser.NamedUser) else assignee for assignee in assignees]
             if isinstance(assignees, (str, unicode)):
-                post_parameters["assignees"] = [assignee.name if isinstance(assignee, github.NamedUser.NamedUser) else assignee for assignee in assignees]
+                a_li = [assignee for assignee in assignees]
+                print a_li
+                post_parameters["assignees"] = a_li
+            else:
+                print "in else"
+                a_li = [assignee for assignee in assignees]
+                print "else list ",a_li
+                post_parameters["assignees"] = a_li
         if milestone is not github.GithubObject.NotSet:
             post_parameters["milestone"] = milestone._identity
         if labels is not github.GithubObject.NotSet:
